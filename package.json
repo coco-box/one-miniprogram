@@ -1,20 +1,32 @@
 {
   "name": "one-miniprogram",
   "private": true,
+  "version": "1.0.0",
+  "description": "uniapp 小程序集成工具",
   "scripts": {
-    "build": "turbo run build",
     "dev": "turbo run dev",
+    "build": "turbo run build",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "test": "turbo run test",
+    "clean": "turbo run clean",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build && changeset publish"
   },
   "devDependencies": {
-    "prettier": "^3.6.2",
-    "turbo": "^2.5.6",
-    "typescript": "5.9.2"
+    "turbo": "^2.5.5",
+    "typescript": "^5.7.3",
+    "@changesets/cli": "^2.29.4"
   },
-  "packageManager": "pnpm@9.0.0",
+  "keywords": ["uniapp", "小程序", "模板"],
+  "author": "YangLance",
+  "license": "ISC",
   "engines": {
-    "node": ">=18"
+    "node": ">=20.19.3",
+    "pnpm": ">=10.15.0"
+  },
+  "packageManager": "pnpm@10.15.0",
+  "volta": {
+    "node": "20.19.3"
   }
 }
