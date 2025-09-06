@@ -11,6 +11,10 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "dev:mp-weixin": {
+      "cache": false,
+      "persistent": true
     }
   },
   "concurrency": "20"

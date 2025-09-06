@@ -1,5 +1,8 @@
 packages:
   - apps/*
   - packages/*
+  - packages/create-onemp/*
+  - packages/create-onemp/*/*
+  - packages/create-onemp/templates/*
   - docs
   - tools/*

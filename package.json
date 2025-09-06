@@ -5,6 +5,7 @@
   "description": "uniapp 小程序集成工具",
   "scripts": {
     "dev": "turbo run dev",
+    "dev:mp": "turbo run dev:mp-weixin --filter @coco-box/mp-basic",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "test": "turbo run test",
