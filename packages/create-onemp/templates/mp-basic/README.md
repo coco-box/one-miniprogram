@@ -1,334 +1,93 @@
-# one-miniprogram 基础模板
+<p align="center">
+  <a href="https://github.com/unibest-tech/unibest">
+    <img width="160" src="./src/static/logo.svg">
+  </a>
+</p>
 
-使用 `uni-app + Vite + Vue3 + TypeScript + uview-plus + UnoCSS` 搭建的适合团队协作的快速开发模版
+<h1 align="center">
+  <a href="https://github.com/unibest-tech/unibest" target="_blank">unibest - 最好的 uniapp 开发框架</a>
+</h1>
 
-[uview-plus官方文档](https://uiadmin.net/uview-plus/)
+<div align="center">
+旧仓库 codercup 进不去了，star 也拿不回来，这里也展示一下那个地址的 star.
 
-### 特性
+[![GitHub Repo stars](https://img.shields.io/github/stars/codercup/unibest?style=flat&logo=github)](https://github.com/codercup/unibest)
+[![GitHub forks](https://img.shields.io/github/forks/codercup/unibest?style=flat&logo=github)](https://github.com/codercup/unibest)
 
-- [x] 集成`uview-plus3.0 ui`库
-- [x] 支持多环境打包构建
-- [x] 使用`pinia`状态管理
-- [x] 封装网络请求，并支持`Typescript`
-- [x] 支持路径别名
-- [x] 支持自动加载组件和`API`
-- [x] 自动校验`git`提交代码格式
-- [x] 集成`ESLint`、`StyleLint`、`EditorConfig`代码格式规范
-- [x] `Typescript`支持
-- [x] 集成`UnoCSS`
-- [x] 集成`iconify`图标库
-- [x] 集成`z-paging`下拉刷新功能
-- [x] 添加页面跳转拦截，登录权限校验
-- [x] 支持`token`无感刷新
-- [x] 项目分包
-- [x] 集成小程序隐私协议授权组件
-- [x] 项目构建自动删除本地图片并替换本地图片路径为线上图片
-- [x] 集成包体积视图分析插件
-- [x] 支持国际化
+</div>
 
-### 目录结构
+<div align="center">
 
-项目中采用目前最新的技术方案来实现，目录结构清晰。
+[![GitHub Repo stars](https://img.shields.io/github/stars/feige996/unibest?style=flat&logo=github)](https://github.com/feige996/unibest)
+[![GitHub forks](https://img.shields.io/github/forks/feige996/unibest?style=flat&logo=github)](https://github.com/feige996/unibest)
+[![star](https://gitee.com/feige996/unibest/badge/star.svg?theme=dark)](https://gitee.com/feige996/unibest/stargazers)
+[![fork](https://gitee.com/feige996/unibest/badge/fork.svg?theme=dark)](https://gitee.com/feige996/unibest/members)
+![node version](https://img.shields.io/badge/node-%3E%3D18-green)
+![pnpm version](https://img.shields.io/badge/pnpm-%3E%3D7.30-green)
+![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/feige996/unibest)
+![GitHub License](https://img.shields.io/github/license/feige996/unibest)
 
-```
-one-miniprogram__one-mp-basic
-├ build                 vite配置统一管理
-│  ├ config
-│  └ plugins
-├ env                   环境变量
-├ scripts               一些脚本
-│  ├ post-upgrade.js     依赖库清理
-│  └ verify-commit.js    git提交检验
-├ src
-│  ├ api                接口管理
-│  ├ components         公共组件
-│  ├ hooks              常用hooks封装
-│  ├ locale             国际化语言管理
-│  ├ pages              页面管理
-│  ├ plugins            插件管理
-│  ├ router             路由管理
-│  ├ static             静态资源
-│  ├ store              状态管理
-│  ├ utils              一些工具
-│  ├ App.vue
-│  ├ main.ts
-│  ├ manifest.json      项目配置
-│  ├ pages.json         页面配置
-│  └ uni.scss           全局scss变量
-├ types                 全局typescript类型文件
-│  ├ auto-imports.d.ts
-│  ├ components.d.ts
-│  ├ global.d.ts
-│  └ module.d.ts
-├ LICENSE
-├ README.md
-├ cz.config.js          cz-git配置
-├ eslint.config.js      eslint配置
-├ index.html
-├ package.json
-├ pnpm-lock.yaml
-├ stylelint.config.js   stylelint配置
-├ tsconfig.json
-├ uno.config.ts         unocss配置
-└ vite.config.ts        vite配置
-```
+</div>
 
-#### vite插件管理
+`unibest` —— 最好的 `uniapp` 开发模板，由 `uniapp` + `Vue3` + `Ts` + `Vite5` + `UnoCss` + `wot-ui` + `z-paging` 构成，使用了最新的前端技术栈，无需依靠 `HBuilderX`，通过命令行方式运行 `web`、`小程序` 和 `App`（编辑器推荐 `VSCode`，可选 `webstorm`）。
 
-```
-build
-├ config            vite配置
-│  ├ index.ts       入口文件
-│  └ proxy.ts       跨域代理配置
-└ plugins           vite插件
-   ├ autoImport.ts  自动导入api
-   ├ cleanImage.ts  自动清理图片文件
-   ├ component.ts   自动导入组件
-   ├ index.ts       入口文件
-   ├ replaceUrl.ts  自动替换图片地址为CDN地址
-   ├ unocss.ts      unocss配置
-   └ visualizer.ts  包体积视图分析
+`unibest` 内置了 `约定式路由`、`layout布局`、`请求封装`、`请求拦截`、`登录拦截`、`UnoCSS`、`i18n多语言` 等基础功能，提供了 `代码提示`、`自动格式化`、`统一配置`、`代码片段` 等辅助功能，让你编写 `uniapp` 拥有 `best` 体验 （ `unibest 的由来`）。
 
-```
+![](https://raw.githubusercontent.com/andreasbm/readme/master/screenshots/lines/rainbow.png)
 
-#### 接口管理
+<p align="center">
+  <a href="https://unibest.tech/" target="_blank">📖 文档地址(new)</a>
+  <span style="margin:0 10px;">|</span>
+  <a href="https://feige996.github.io/hello-unibest/" target="_blank">📱 DEMO 地址</a>
+</p>
 
-```
-api
-├ common       通用api
-│  ├ index.ts
-│  └ types.ts
-├ user         用户相关api
-│  ├ index.ts
-│  └ types.ts
-└ index.ts     入口文件
-```
+---
 
-#### hooks管理
+注意旧的地址 [codercup](https://github.com/codercup/unibest) 我进不去了，使用新的 [feige996](https://github.com/feige996/unibest)。PR和 issue 也请使用新地址，否则无法合并。
 
-```
-hooks
-├ use-clipboard  剪切板
-│  └ index.ts
-├ use-loading    loading
-│  └ index.ts
-├ use-modal      模态框
-│  └ index.ts
-├ use-permission 校验权限
-│  └ index.ts
-├ use-share      分享
-│  └ index.ts
-└ index.ts       入口文件
-```
+## 平台兼容性
 
-### 页面管理
+| H5  | IOS | 安卓 | 微信小程序 | 字节小程序 | 快手小程序 | 支付宝小程序 | 钉钉小程序 | 百度小程序 |
+| --- | --- | ---- | ---------- | ---------- | ---------- | ------------ | ---------- | ---------- |
+| √   | √   | √    | √          | √          | √          | √            | √          | √          |
 
-```
-pages
-├ common           公共页面（分包common）
-│  ├ login
-│  │  └ index.vue
-│  └ webview
-│     └ index.vue
-└ tab              主页面（主包）
-   ├ home
-   │  └ index.vue
-   ├ list
-   │  └ index.vue
-   └ user
-      └ index.vue
-```
+注意每种 `UI框架` 支持的平台有所不同，详情请看各 `UI框架` 的官网，也可以看 `unibest` 文档。
 
-#### 状态管理
+## ⚙️ 环境
 
-```sh
-store
-├ modules
-│  ├ app          app状态
-│  │  ├ index.ts
-│  │  └ types.ts
-│  └ user         用户状态
-│     ├ index.ts
-│     └ types.ts
-└ index.ts        入口文件
-```
+- node>=18
+- pnpm>=7.30
+- Vue Official>=2.1.10
+- TypeScript>=5.0
 
-### 工具方法
+## &#x1F4C2; 快速开始
 
-```sh
-utils
-├ auth                token相关方法
-│  └ index.ts
-├ common              通用方法
-│  └ index.ts
-├ modals              弹窗相关方法
-│  └ index.ts
-├ request             网络请求相关方法
-│  ├ index.ts
-│  ├ interceptors.ts
-│  ├ status.ts
-│  └ types.ts
-└ index.ts            入口文件
-```
+执行 `pnpm create unibest` 创建项目
+执行 `pnpm i` 安装依赖
+执行 `pnpm dev` 运行 `H5`
+执行 `pnpm dev:mp` 运行 `微信小程序`
 
-### 使用方法
+## 📦 运行（支持热更新）
 
-```bash
-# 安装依赖
-pnpm install
+- web平台： `pnpm dev:h5`, 然后打开 [http://localhost:9000/](http://localhost:9000/)。
+- weixin平台：`pnpm dev:mp` 然后打开微信开发者工具，导入本地文件夹，选择本项目的`dist/dev/mp-weixin` 文件。
+- APP平台：`pnpm dev:app`, 然后打开 `HBuilderX`，导入刚刚生成的`dist/dev/app` 文件夹，选择运行到模拟器(开发时优先使用)，或者运行的安卓/ios基座。(如果是 `安卓` 和 `鸿蒙` 平台，则不用这个方式，可以把整个unibest项目导入到hbx，通过hbx的菜单来运行到对应的平台。)
 
-# 启动H5
-pnpm dev:h5
+## 🔗 发布
 
-# 启动微信小程序
-pnpm dev:mp-weixin
-```
+- web平台： `pnpm build:h5`，打包后的文件在 `dist/build/h5`，可以放到web服务器，如nginx运行。如果最终不是放在根目录，可以在 `manifest.config.ts` 文件的 `h5.router.base` 属性进行修改。
+- weixin平台：`pnpm build:mp`, 打包后的文件在 `dist/build/mp-weixin`，然后通过微信开发者工具导入，并点击右上角的“上传”按钮进行上传。
+- APP平台：`pnpm build:app`, 然后打开 `HBuilderX`，导入刚刚生成的`dist/build/app` 文件夹，选择发行 - APP云打包。(如果是 `安卓` 和 `鸿蒙` 平台，则不用这个方式，可以把整个unibest项目导入到hbx，通过hbx的菜单来发行到对应的平台。)
 
-### 发布
+## 📄 License
 
-```bash
-# 构建开发环境
-pnpm build:h5
-pnpm build:mp-weixin
+[MIT](https://opensource.org/license/mit/)
 
-# 构建测试环境
-pnpm build:h5-test
-pnpm build:mp-weixin-test
+Copyright (c) 2025 菲鸽
 
-# 构建生产环境
-pnpm build:h5-prod
-pnpm build:mp-weixin-prod
-```
-
-### 代码提交
-
-```bash
-pnpm cz
-```
-
-### 更新uniapp版本
-
-更新uniapp相关依赖到最新正式版
-
-```bash
-pnpx @dcloudio/uvm@latest
-```
-
-或者执行下面的命令
-
-```bash
-pnpm uvm
-```
-
-在升级完后，会自动添加很多无用依赖，执行下面的代码减小保体积
-
-```sh
-pnpm uvm-rm
-```
-
-### `v3` 代码块
-
-在 `vue` 文件中，输入 `v3` 按 `tab` 即可快速生成页面模板，可以大大加快页面生成。
-> 原理：基于 VSCode 代码块生成。
-
-### 登录鉴权
-
-1. 页面如果需要登录才能访问，只需在 `pages.json` 文件中需要鉴权的页面下设置 `needLogin` 属性设置为 `true` 即可，比如
-
-```
-{
-  "pages": [
-    {
-      "path": "pages/test/test",
-      "needLogin": true,
-      "style": {
-        "navigationBarTitleText": "",
-      },
-    }
-  ]
-}
-```
-
-2. 如果有`tab`页面需要登录才能访问，上面的设置在小程序中点击`tabbar`时无效，因为在小程序中点击tabbar不会触发`uni.switchTab`方法，下面是官方给出的回复及解决方案。
-
-> 拦截uni.switchTab本身没有问题。但是在微信小程序端点击tabbar的底层逻辑并不是触发uni.switchTab。所以误认为拦截无效，此类场景的解决方案是在tabbar页面的页面生命周期onShow中处理。
-
-可参考`pages/tab/user/index.vue`中的代码，核心代码如下：
-
-```
-<script setup lang="ts">
-// 引入鉴权hooks
-import { usePermission } from "@/hooks";
-
-onShow(async () => {
-  console.log("tabbar page onShow");
-  const hasPermission = await usePermission();
-  console.log(hasPermission ? "已登录" : "未登录，拦截跳转");
-});
-</script>
-```
-
-### 注意事项
-
-1. 微信小程序开发者工具中内置的打包分析不准确，本项目使用了`rollup-plugin-visualizer`来分析小程序包体积，默认不开启，有需要的移除相关注释即可
-2. 自动构建处理本地图片资源，使用了`vite-plugin-clean-build`和`vite-plugin-replace-image-url`这两个插件，默认不开启相关功能，如果需要使用再`build/vite/plugins/index.ts`文件中移除相关注释即可
-3. 使用`vite-plugin-replace-image-url`插件，想要图片自动替换生效，需要在项目中使用绝对路径引入图片资源，如下示例所示。
-
-    示例一：style中的图片使用
-
-    ```
-    <template>
-      <view :style="`background-image: url('${bgImg}')`">
-        ...
-      </view>
-    </template>
-    <script setup lang="ts">
-    import bgImg from '@/static/images/bg_img.png';
-    </script>
-    ```
-
-    示例二：js中的图片使用
-
-    ```
-    <script setup lang="ts">
-    import walletIcon from '@/static/images/icon_wallet.png';
-    const menuList = [
-      {
-        name: 'wallet',
-        title: '钱包',
-        icon: walletIcon,
-      },
-      ...
-    ];
-    </script>
-    ```
-
-    示例二：css中的图片使用
-
-    ```
-    <style lang="scss">
-    .icon {
-      background-image: url('@/static/images/icon.png')
-    }
-    </style>
-    ```
-
-4. 部分用户构建微信小程序如下错误，原因是微信开发者工具缺失了对应的依赖。
-
-```
-This @babel/plugin-proposal-private-property-in-object version is not meant to
-be imported.
-```
-
-此时升级微信开发者工具，或者安装`@babel/plugin-proposal-private-property-in-object`依赖即可解决问题。
-
-5. `shadcn-ui` 分支采用最新的 `tailwindcss v4.1` 版本，因为现阶段的 `unocss` 对于最新版 `tailwindcss` 支持还不够完善。
-`shadcn-ui`并不太适合移动端使用，如果不喜欢可以移除，只保留纯净的框架。
-
-### 捐赠
-
-如果你觉得这个项目对你有帮助，你可以请作者喝饮料🍹
+## 捐赠
 
 <p align='center'>
-<img alt="微信收款码" src="./src/static/images/pay.png" height="330" style="display:inline-block; height:330px;">
+<img alt="special sponsor appwrite" src="https://oss.laf.run/ukw0y1-site/pay/wepay.png" height="330" style="display:inline-block; height:330px;">
+<img alt="special sponsor appwrite" src="https://oss.laf.run/ukw0y1-site/pay/alipay.jpg" height="330" style="display:inline-block; height:330px; margin-left:10px;">
 </p>

@@ -1,21 +1,18 @@
+// https://www.npmjs.com/package/@uni-helper/unocss-preset-uni
+import { presetUni } from '@uni-helper/unocss-preset-uni'
 import {
   defineConfig,
+  presetAttributify,
   presetIcons,
   transformerDirectives,
   transformerVariantGroup,
-} from 'unocss';
-import { presetWeapp } from 'unocss-preset-weapp';
-import { extractorAttributify, transformerClass } from 'unocss-preset-weapp/transformer';
-
-const { presetWeappAttributify, transformerAttributify } = extractorAttributify();
+} from 'unocss'
 
 export default defineConfig({
   presets: [
-    // https://github.com/MellowCo/unocss-preset-weapp
-    presetWeapp(),
-    // attributify autocomplete
-    presetWeappAttributify() as any,
-    // https://unocss.dev/presets/icons
+    presetUni({
+      attributify: false,
+    }),
     presetIcons({
       scale: 1.2,
       warn: true,
@@ -24,46 +21,43 @@ export default defineConfig({
         'vertical-align': 'middle',
       },
     }),
+    // 支持css class属性化
+    presetAttributify(),
   ],
-  /**
-   * 自定义快捷语句
-   * @see https://github.com/unocss/unocss#shortcuts
-   */
-  shortcuts: {
-    'border-base': 'border border-gray-500_10',
-    'center': 'flex justify-center items-center',
-  },
+  transformers: [
+    // 启用指令功能：主要用于支持 @apply、@screen 和 theme() 等 CSS 指令
+    transformerDirectives(),
+    // 启用 () 分组功能
+    // 支持css class组合，eg: `<div class="hover:(bg-gray-400 font-medium) font-(light mono)">测试 unocss</div>`
+    transformerVariantGroup(),
+  ],
+  shortcuts: [
+    {
+      center: 'flex justify-center items-center',
+    },
+  ],
+  // 动态图标需要在这里配置，或者写在vue页面中注释掉
+  safelist: ['i-carbon-code'],
+  rules: [
+    [
+      'p-safe',
+      {
+        padding:
+          'env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)',
+      },
+    ],
+    ['pt-safe', { 'padding-top': 'env(safe-area-inset-top)' }],
+    ['pb-safe', { 'padding-bottom': 'env(safe-area-inset-bottom)' }],
+  ],
   theme: {
     colors: {
-      // 主题颜色
-      'primary': 'var(--theme-primary)',
-      'success': 'var(--theme-success)',
-      'warning': 'var(--theme-warning)',
-      'error': 'var(--theme-error)',
-      // 文字颜色
-      'text-main': 'var(--theme-main-color)',
-      'text-content': 'var(--theme-content-color)',
-      'text-tips': 'var(--theme-tips-color)',
-      'text-light': 'var(--theme-light-color)',
-      'text-disabled': 'var(--theme-disabled-color)',
-      // 背景颜色
-      'bg-main': 'var(--theme-bg-color)',
-      'bg-secondary': 'var(--theme-bg-color-secondary)',
-      // 边框颜色
-      'border-main': 'var(--theme-border-color)',
+      /** 主题色，用法如: text-primary */
+      primary: 'var(--wot-color-theme,#0957DE)',
+    },
+    fontSize: {
+      /** 提供更小号的字体，用法如：text-2xs */
+      '2xs': ['20rpx', '28rpx'],
+      '3xs': ['18rpx', '26rpx'],
     },
   },
-  transformers: [
-    // 启用 @apply 功能
-    transformerDirectives({
-      enforce: 'pre',
-    }),
-    // https://unocss.dev/transformers/variant-group
-    // 启用 () 分组功能
-    transformerVariantGroup(),
-    // https://github.com/MellowCo/unocss-preset-weapp/tree/main/src/transformer/transformerAttributify
-    transformerAttributify() as any,
-    // https://github.com/MellowCo/unocss-preset-weapp/tree/main/src/transformer/transformerClass
-    transformerClass(),
-  ],
-});
+})
